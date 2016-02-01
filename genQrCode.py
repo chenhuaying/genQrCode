@@ -58,7 +58,7 @@ def CreateQrCode(text, export="genqrcode.png", logo=""):
         try:
           if export.rindex('.png') or export.rindex('.jpg') or export.rindex('.gif'):
             pass
-        except Exception, e:
+        except Exception as e:
           print(e)
           export = export + '.png'
 

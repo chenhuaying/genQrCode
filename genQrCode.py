@@ -48,13 +48,17 @@ def CreateQrCode(text, export="genqrcode.png", logo=""):
       if os.path.isdir(export):
         export = export + "genqrcode.png"
       else:
-        export = os.path.dirname(export) + time.strftime("%Y%m%d%H%M%S.png", time.gmtime())
+        #export = os.path.dirname(export) + time.strftime("%Y%m%d%H%M%S.png", time.gmtime())
+        filename, extension = os.path.splitext(export)
+        filebasename = os.path.basename(filename)
+        export = os.path.join(os.path.dirname(filename), filebasename+time.strftime("%Y%m%d%H%M%S.png", time.gmtime()))
     else:
       if export[len(export)-1] == '/' or export[len(export)-1] == '\\':
         os.makedirs(export)
       else:
         if not os.path.dirname(export) == "":
-          os.makedirs(os.path.dirname(export))
+          if not os.path.exists(os.path.dirname(export)):
+            os.makedirs(os.path.dirname(export))
         try:
           if export.rindex('.png') or export.rindex('.jpg') or export.rindex('.gif'):
             pass
@@ -62,6 +66,7 @@ def CreateQrCode(text, export="genqrcode.png", logo=""):
           print(e)
           export = export + '.png'
 
+    print(export)
     img.save(export)
 
 if __name__ == '__main__':

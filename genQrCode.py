@@ -8,7 +8,7 @@ from PIL import Image
 
 def CreateQrCode(text, export="genqrcode.png", logo=""):
     qr = qrcode.QRCode(version=2,
-        error_correction = qrcode.constants.ERROR_CORRECT_L,
+        error_correction = qrcode.constants.ERROR_CORRECT_H,
         box_size = 10,
         border = 1
         )
